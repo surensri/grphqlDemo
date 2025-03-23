@@ -12,12 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Install Salesforce CLI
-        run: |
-          npm install --global sfdx-cli
-          sf --version
-
+        
       - name: Authenticate with Salesforce
         run: |
           echo ${{ secrets.SF_AUTH_URL }} > authFile.txt
