@@ -15,8 +15,10 @@ jobs:
 
       - name: Install Salesforce CLI
         run: |
-          npm install --global sfdx-cli
-          sf --version
+          curl -sSL https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz | tar -xJ
+          sudo mv sf /usr/local/bin/
+          sf --version  # Verify installation
+      
 
       - name: Authenticate with Salesforce
         run: |
