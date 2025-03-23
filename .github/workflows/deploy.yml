@@ -12,20 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-<<<<<<< HEAD
-
-=======
->>>>>>> 434984759be6901fb9d20ac866cd194b2337c9d5
       - name: Install Salesforce CLI
         run: |
           curl -sSL https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz | tar -xJ
           sudo mv sf /usr/local/bin/
           sf --version  # Verify installation
-<<<<<<< HEAD
-      
-
-=======
->>>>>>> 434984759be6901fb9d20ac866cd194b2337c9d5
       - name: Authenticate with Salesforce
         run: |
           echo ${{ secrets.SF_AUTH_URL }} > authFile.txt
