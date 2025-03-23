@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Manage Accounts with GraphQL" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <!-- Input for entering the Account Name to create a new account -->
+            <lightning-input 
+                label="Enter Account Name to Create" 
+                value={inputValue} 
+                type="text" 
+                onchange={handleAccountNameChange}>
+            </lightning-input>      
+            
+            <lightning-input 
+            label="Enter Alias" 
+            value={aliasValue} 
+            type="text" 
+            onchange={handleAliasChange}>
+        </lightning-input>
+
+        <lightning-input 
+            label="Enter State" 
+            value={stateValue} 
+            type="text" 
+            onchange={handleStateChange}>
+        </lightning-input>
+
+        <lightning-input 
+            label="Enter Gender" 
+            value={genderValue} 
+            type="text" 
+            onchange={handleGenderChange}>
+        </lightning-input>
+
+        <br>
+    
+            <!-- Button to insert a new account -->
+            <lightning-button label="Submit" onclick={handleInsertClick} class="slds-m-bottom_small"></lightning-button>
+
+            <br>
+            <br>
+
+            <template if:true={data}>
+                <lightning-datatable
+                    key-field="id"
+                    data={data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    class="slds-m-top_medium"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+            <!-- Display success or error messages -->
+            <template if:true={message}>
+                <div class="slds-text-color_success slds-m-top_medium">{message}</div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-top_medium">{error}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

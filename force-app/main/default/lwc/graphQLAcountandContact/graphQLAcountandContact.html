@@ -1,0 +1,138 @@
+<template>
+    <lightning-card title="Manage Accounts and Contacts with GraphQL" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <!-- Grid layout for Account and Contact side by side with horizontal spacing -->
+            <div class="slds-grid slds-wrap">
+                
+                <!-- Account Fields -->
+                <div class="slds-col slds-size_1-of-2 slds-p-right_medium">
+                    <h3>Account Information</h3>
+                    <lightning-input 
+                        label="Account Name" 
+                        value={accountName} 
+                        type="text" 
+                        required
+                        onchange={handleAccountNameChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-input>  
+
+                    <lightning-input 
+                        label="Account Site" 
+                        value={siteValue} 
+                        type="text" 
+                        onchange={handleAccountSiteChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-input>
+
+                    <lightning-input 
+                        label="Account Phone" 
+                        value={phoneValue} 
+                        type="Phone" 
+                        onchange={handleAccountPhoneChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-input>
+
+                <lightning-input 
+                label="Website" 
+                value={webValue} 
+                type="Url" 
+                onchange={handleWebsiteChange}
+                class="slds-m-bottom_medium">
+               </lightning-input>
+            </div>
+                <!-- Contact Fields -->
+                <div class="slds-col slds-size_1-of-2 slds-p-left_medium">
+                    <h3>Contact Information</h3>
+                    
+                    <!-- Salutation Picklist -->
+                    <lightning-combobox
+                        label="Salutation"
+                        value={salutation}
+                        placeholder="Select Salutation"
+                        options={salutationOptions}
+                        onchange={handleSalutationChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-combobox>
+
+                    <!-- First Name Input -->
+                    <lightning-input 
+                        label="First Name" 
+                        value={firstName} 
+                        type="text" 
+                        required
+                        onchange={handleFirstNameChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-input>  
+
+                    <!-- Last Name Input -->
+                    <lightning-input 
+                        label="Last Name" 
+                        value={lastName} 
+                        type="text" 
+                        required
+                        onchange={handleLastNameChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-input>
+
+                    <!-- Account Lookup (for Contact's Account) -->
+                    <!--lightning-combobox 
+                        label="Account Name for Contact" 
+                        value={selectedAccountId} 
+                        options={accountOptions} 
+                        onchange={handleAccountSelect}
+                        class="slds-m-bottom_medium">
+                    </lightning-combobox-->
+                    <template if:true={accountLookupOptions}>
+                        <ul class="slds-listbox slds-listbox_vertical slds-p-around_xx-small">
+                            <template for:each={accountLookupOptions} for:item="account">
+                                <li key={account.value} class="slds-listbox__item" onclick={handleAccountSelect}>
+                                    <div class="slds-listbox__option slds-listbox__option_plain">
+                                        {account.label}
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                </div>
+
+            </div>
+            <br>
+            <div class="slds-grid slds-wrap slds-m-around_medium">
+               
+            
+            <div class="slds-col  slds-text-align_center">
+
+            <lightning-button 
+                label="Create Account and Contacts" 
+                onclick={handleInserAccountandContactClick}
+                class="slds-m-top_medium">
+            </lightning-button>
+            </div>
+                
+            </div>
+            <!-- Datatable for Accounts and Contacts -->
+            <br>
+            <br>
+            <h6 style="font-weight: bold; font-size: 16px;">Accounts with Contact Details</h6>
+            <br>
+            <template if:true={data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    class="slds-m-top_medium"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+
+            <!-- Success/Error Messages -->
+            <template if:true={message}>
+                <div class="slds-text-color_success slds-m-top_medium">{message}</div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-top_medium">{error}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

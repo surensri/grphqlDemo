@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Add data into Datatable">
+        <lightning-layout>
+            <lightning-input class="slds-p-around_medium" label="Name" type="string" name="Name" onchange={nameChangedHandler} required="true"> </lightning-input>
+            <lightning-input class="slds-p-around_medium" label="Alias" type="string" name="Alias" onchange={aliasChangedHandler} required="true"> </lightning-input>
+            <lightning-input class="slds-p-around_medium" label="State" type="string" name="State" onchange={stateChangedHandler} required="true"> </lightning-input>
+            <lightning-input class="slds-p-around_medium" label="Gender" type="string" name="Gender" onchange={genderChangedHandler} required="true"> </lightning-input>
+        </lightning-layout>
+        <lightning-button class="slds-m-left_x-small" label="Display" variant="brand" onclick={handleClick}>
+        </lightning-button>
+        <lightning-datatable key-field="id" id="datatable" data={fields} columns={columns}>
+        </lightning-datatable>                 
+    </lightning-card>  
+</template>

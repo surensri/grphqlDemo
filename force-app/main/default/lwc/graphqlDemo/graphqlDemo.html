@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Wired with GraphQL" icon-name="utility:user">
+        <div class="slds-var-m-horizontal_medium">
+        <template lwc:if={results}>
+            <template for:each={results} for:item="account">
+            <div key={account.Id}>
+                {account.Name.value}
+            </div>
+            </template>
+        </template>
+        </div>
+    </lightning-card>
+</template>

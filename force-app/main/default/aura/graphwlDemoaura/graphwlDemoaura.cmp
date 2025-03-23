@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+
+<c:graphqlDemo objectapiname = "Account" recordId="{!v.recordId}"></c:graphqlDemo>
+<c:graphqlDemo objectapiname = "Contact" recordId="{!v.recordId}"></c:graphqlDemo>
+
+</aura:component>

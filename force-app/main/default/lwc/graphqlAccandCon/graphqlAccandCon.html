@@ -1,0 +1,68 @@
+<template>
+    <lightning-card title="Manage Accounts with GraphQL" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <!-- Input for entering the Account Name to create a new account -->
+            <lightning-input 
+                label="Account Name" 
+                value={inputValue} 
+                type="text" 
+                required
+                onchange={handleAccountNameChange}
+                class="slds-size_1-of-3">
+            </lightning-input>  
+            <template if:true={accountNameError}>
+                <div class="slds-text-color_error">{accountNameErrorMessage}</div>
+            </template>    
+            
+            <lightning-input 
+            label="Account Site" 
+            value={siteValue} 
+            type="text" 
+            onchange={handleAliasChange}
+            class="slds-size_1-of-3">
+        </lightning-input>
+
+        <lightning-input 
+            label="Phone" 
+            value={phoneValue} 
+            type="Phone" 
+            onchange={handleStateChange}
+            class="slds-size_1-of-3">
+        </lightning-input>
+
+        <lightning-input 
+            label="Website" 
+            value={WebsiteValue} 
+            type="Url" 
+            onchange={handleGenderChange}
+            class="slds-size_1-of-3">
+        </lightning-input>
+
+        <br>
+    
+            <!-- Button to insert a new account -->
+            <lightning-button label="Submit" onclick={handleInsertClick} class="slds-m-bottom_small"></lightning-button>
+
+            <br>
+            <br>
+
+            <template if:true={data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    class="slds-m-top_medium"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+            <!-- Display success or error messages -->
+            <template if:true={message}>
+                <div class="slds-text-color_success slds-m-top_medium">{message}</div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-top_medium">{error}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
