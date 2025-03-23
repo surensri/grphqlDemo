@@ -1,0 +1,33 @@
+name: Deploy to Salesforce Org
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Salesforce CLI
+        run: |
+          npm install --global sfdx-cli
+          sf --version
+
+      - name: Authenticate with Salesforce
+        run: |
+          echo ${{ secrets.SF_AUTH_URL }} > authFile.txt
+          sf org login sfdx-url --sfdx-url-file authFile.txt --alias target-org
+          sf org display --target-org target-org
+
+      - name: Deploy source to Salesforce
+        run: |
+          sf project deploy start --target-org target-org --verbose
+
+      - name: Post-deployment validation
+        run: |
+          sf org open --target-org target-org
