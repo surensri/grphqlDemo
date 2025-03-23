@@ -21,13 +21,13 @@ jobs:
       - name: Authenticate with Salesforce
         run: |
           echo ${{ secrets.SF_AUTH_URL }} > authFile.txt
-          sf org login sfdx-url --sfdx-url-file authFile.txt --alias target-org
-          sf org display --target-org target-org
+          sf org login sfdx-url --sfdx-url-file authFile.txt --alias graphql
+          sf org display --target-org graphql
 
       - name: Deploy source to Salesforce
         run: |
-          sf project deploy start --target-org target-org --verbose
+          sf project deploy start --target-org graphql --verbose
 
       - name: Post-deployment validation
         run: |
-          sf org open --target-org target-org
+          sf org open --target-org graphql
