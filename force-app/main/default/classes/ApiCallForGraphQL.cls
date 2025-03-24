@@ -3,7 +3,7 @@ public class ApiCallForGraphQL {
     public static String executeGraphQLQuery(String query) {
         System.debug('=== Start of executeGraphQLQuery method ===');
 
-        // Named Credential should be configured in Salesforce setup as per previous instructions
+        // Named Credentiall should be configured in Salesforce setup as per previous instructions
         String graphQlEndpoint = 'callout:Salesforce_GraphQL_NamedCredential/services/data/v61.0/graphql';
         
         // Log the query
